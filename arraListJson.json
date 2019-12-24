@@ -1,2 +1,17 @@
+[{
+    "name": "Home",
+    "code": 1
+},
 {
-    "lists" :  ["Home","back","close","continue"]}
+    "name": "back",
+    "code": 2
+},
+{
+    "name": "close",
+    "code": 3
+},
+{
+    "name": "continue",
+    "code": 4
+}
+]

@@ -1,4 +1,5 @@
 var arrayStr;
+var listLength;
 function myFunctiononload()
 {
     var xhttp = new XMLHttpRequest();
@@ -8,10 +9,10 @@ xhttp.onreadystatechange = function() {
        arrayStr=JSON.parse(xhttp.responseText);
 
     var addList = "";
-    var listLength = arrayStr.lists.length;
+    listLength = arrayStr.length;
    for( var i=0; i<listLength; i++)
     {
-addList += "<li>" + arrayStr.lists[i] +"</li>";
+addList += "<li>" + arrayStr[i].name +"</li>";
     }
     document.getElementById("showList").innerHTML = addList;
 }
@@ -26,12 +27,12 @@ function myFunction()
     var newList = document.getElementById("textBox").value;
         if (newList.length > 0)
         {
-            arrayStr.lists.push(newList);
+            arrayStr.push({"name":newList,"code":arrayStr.length+1});
         }
-    var listLength = arrayStr.lists.length;
+        listLength = arrayStr.length;    
    for( var i=0; i<listLength; i++)
     {
-addList += "<li>" + arrayStr.lists[i] +"</li>";
+addList += "<li>" + arrayStr[i].name +"</li>";
     }
     document.getElementById("showList").innerHTML = addList;
     
@@ -41,17 +42,25 @@ function delFunction()
 {
         var delList = document.getElementById("textBox").value;
     var addList = "";
-    
-     var delVal = arrayStr.lists.indexOf(delList);
-     if(delVal>=0)
+    listLength = arrayStr.length;
+    //  var delVal = arrayStr.indexOf(arrayStr.delList,1);
+     if(delList!=null)
      {
-        arrayStr.lists.splice(delVal,1); 
-     }
-    var listLength = arrayStr.lists.length;
+        for( var i=0; i<listLength; i++)
+        {
+            if(arrayStr[i].name===delList)
+            {
+                arrayStr.splice(i,1);
+                break;
+            }
+        }
+        // arrayStr=JSON.parse(arrayStr);
+        listLength = arrayStr.length;
+    }
    for( var i=0; i<listLength; i++)
     {
 
-addList += "<li>" + arrayStr.lists[i] +"</li>";
+addList += "<li>" + arrayStr[i].name +"</li>";
   }
     document.getElementById("showList").innerHTML = addList; 
     
